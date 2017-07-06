@@ -5,6 +5,8 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const browserify = require('gulp-browserify');
+const less = require('gulp-less');
+const path = require('path');
 
 
 gulp.task('es6', () => {
@@ -31,4 +33,12 @@ gulp.task('sass', function () {
 
 gulp.task('sass:watch', function () {
     gulp.watch('./src/**/*.scss', ['sass']);
+});
+
+gulp.task('less', function () {
+    return gulp.src('./src/**/*.less')
+        .pipe(less({
+            paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('./'));
 });
