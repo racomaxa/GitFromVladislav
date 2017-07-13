@@ -1,37 +1,56 @@
-body {
-  text-align:center;
+#particles-js{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
-
+#page-wrapper{
+  position: relative;
+  z-index: 2;
+}
 // Chart set up
+.conteinerForSvg{
+  position: relative;
+  margin: 50px auto;
 
-.chart {
-  border-left:1px solid black;
-  border-bottom:1px solid black;
-  margin:60px auto;
-  position:relative;
-  list-style:none;
-  padding:0;
+  .chart {
+    border-left:1px solid black;
+    border-bottom:1px solid black;
+    margin:auto;
+  }
+
+  .y {
+    position:absolute;
+    transform:rotate(-90deg);
+    transform-origin: bottom left;
+    bottom:0;
+    padding:5px;
+  }
+
+
+  .x {
+    position:absolute;
+    top:100%;
+    width:100%;
+    padding:5px;
+  }
+}
+.conteiner{
+  margin:70px auto;
+  background-color: #b3c9ce;
+  border: 2px solid black;
+  border-radius: 50px;
 }
 
-.y {
-  position:absolute;
-  transform:rotate(-90deg);
-  transform-origin: bottom left;
-  bottom:0;
-  padding:5px;
-}
 
-.x {
-  position:absolute;
-  top:100%;
-  width:100%;
-  padding:5px;
-}
+
 
 // Bar Chart
 
 .bar  {
-  background:red;
+  fill:red;
   position:absolute;
   bottom:0;
 
@@ -51,10 +70,7 @@ body {
   }
 
   &:hover {
-
-    span {
-      opacity:1;
-    }
+      fill: #ce8100;
   }
 }
 
@@ -84,11 +100,6 @@ body {
     }
   }
 
-}
-svg {
-  position: absolute;
-  transform: rotateX(180deg);
-  left: 0;
 }
 
 line  {

@@ -3,18 +3,23 @@
     <link type="text/css" href="styleForDiagram.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
-<hr>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
+<script src="back.js" defer></script>
+<div id="particles-js" style=" background-color: deepskyblue;"></div>
+<div id="page-wrapper">
 <div ng-app="graphApp">
+    <script src="diagram.js" type="text/javascript"></script>
     <div ng-controller="graphController as graph">
-        <ul ng-mouseleave="reset($event)" ng-mouseover="targetNow($event)" class="chart" style="width:{{width}}px; height:{{height}}px;">
-            <script src="diagram.js" type="text/javascript"></script>
-            <!-- Labels -->
-            <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
-            <div class="x">{{xAxis}}</div>
-            <!-- Data -->
-           <li ng-repeat="bar in data" data-info="{{bar.day}} Февраля, Курс:{{bar.course}}" class="bar" style="height:{{bar.course / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></li>
-           <!-- <li ng-repeat="dot in data" class="dot" style="bottom:{{(dot.course / max * height)/2}}px; left:{{($index + 0.5) / data.length * width}}px;"><span>{{dot.day}} - {{dot.course}}</span></li>-->
-        </ul>
-
+        <div class="conteiner" ng-style="{'height': height + 100, 'width': width + 100}">
+            <div class="conteinerForSvg" ng-style="{'height': height + 1, 'width': width + 1}">
+                <div class="y" ng-style="{'width': height}">{{yAxis}}</div>
+                <div class="x">{{xAxis}}</div>
+                <svg ng-mouseleave="reset($event)" ng-click="trash($event)" ng-mouseover="targetNow($event)" class="chart" ng-attr-width="{{width}}" ng-attr-height="{{height}}">
+                    <rect ng-repeat="bar in details" data-info="{{bar.Date}} , Курс:{{bar.Cur_OfficialRate}}" class="bar" ng-attr-height="{{bar.Cur_OfficialRate / max * height}}" ng-attr-width="{{width / count - 5}}" ng-attr-x="{{$index /count * width }}" ng-attr-y="{{height-(bar.Cur_OfficialRate / max * height)}}" ></rect>
+                </svg>
+            </div>
+        </div>
     </div>
+</div>
 </div>
