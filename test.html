@@ -11,13 +11,18 @@
 <div ng-app="graphApp">
     <script src="diagram.js" type="text/javascript"></script>
     <div ng-controller="graphController as graph">
-        <div class="conteiner" ng-style="{'height': height + 100, 'width': width + 100}">
+        <div class="conteiner" ng-style="{'height': height + 200, 'width': width + 200}">
             <div class="conteinerForSvg" ng-style="{'height': height + 1, 'width': width + 1}">
                 <div class="y" ng-style="{'width': height}">{{yAxis}}</div>
                 <div class="x">{{xAxis}}</div>
                 <svg ng-mouseleave="reset($event)" ng-click="trash($event)" ng-mouseover="targetNow($event)" class="chart" ng-attr-width="{{width}}" ng-attr-height="{{height}}">
                     <rect ng-repeat="bar in details" data-info="{{bar.Date}} , Курс:{{bar.Cur_OfficialRate}}" class="bar" ng-attr-height="{{bar.Cur_OfficialRate / max * height}}" ng-attr-width="{{width / count - 5}}" ng-attr-x="{{$index /count * width }}" ng-attr-y="{{height-(bar.Cur_OfficialRate / max * height)}}" ></rect>
                 </svg>
+            </div>
+            <div id="conteinerForDatePicker">
+                <input id="startDate" class="date" type="date">
+                <input id="endDate" class="date" type="date">
+                <br><input ng-click="check()" class="confirmChooseDate" type="button" value="Потвердить" name="but_1">
             </div>
         </div>
     </div>

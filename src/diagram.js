@@ -19,7 +19,6 @@
         $scope.xAxis = 'Февраль 2017';
         $scope.max = 0;
 
-
         $http.get("http://www.nbrb.by/API/ExRates/Rates/Dynamics/145?startDate=2017-2-1&endDate=2017-2-28")
             .then(function(response) {
                 $scope.details = response.data;
@@ -57,8 +56,12 @@
        };
         $scope.trash = (event)=>{
             let target = event.target;
-            alert(target.getAttribute("data-info"));
+
         };
+
+        $scope.check = ()=>{
+            alert(document.getElementById("startDate").getAttribute("value")+" "+document.getElementById("endDate").getAttribute("value"));
+        }
 
         $scope.reset = (event)=>{
             let target = event.target;
